@@ -1,4 +1,3 @@
-// app/api/md-converter/route.ts
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer-core";
 import { marked } from "marked";

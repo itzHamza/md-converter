@@ -1,36 +1,193 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Puppeteer-PDF-green?style=for-the-badge&logo=googlechrome" alt="Puppeteer" />
+</p>
 
-## Getting Started
+# 🩺 Med Converter
 
-First, run the development server:
+> **Convert your medical Markdown notes into beautifully styled HTML & PDF documents.**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Med Converter is a web app built for medical students who write their notes in Markdown. Upload a `.md` file, pick a theme, and get a polished HTML page and a print-ready A4 PDF — with full support for **Arabic**, **French**, and **mixed bilingual content**.
+
+---
+
+## ✨ Features
+
+- **Drag & Drop Upload** — Drop a `.md` file or click to browse
+- **4 Medical Themes** — Clinical Blue, Obsidian Scholar, Forest Anatomy, Warm Radiology
+- **Arabic + French Support** — Automatic RTL detection with Tajawal font for Arabic and Plus Jakarta Sans for Latin
+- **Mixed Bidi Content** — Handles Arabic/French mixed documents with `unicode-bidi: plaintext`
+- **HTML Preview** — Live rendered preview in an iframe
+- **PDF Preview** — Embedded PDF viewer with download fallback
+- **Download Both** — One-click download for `.html` and `.pdf`
+- **KaTeX Math** — LaTeX math rendering in both HTML and PDF
+- **Print-Optimized PDF** — A4 format, page break prevention, proper margins
+- **Med-Friendly Styling** — Clean typography, table borders for drug tables, code blocks for clinical data
+
+---
+
+## 🏗️ Architecture
+
+```
+Client (Next.js App Router)
+  └── POST /api/md-converter  (multipart: .md file + theme)
+        └── Node.js Route Handler
+              ├── marked           →  Markdown → HTML
+              ├── HTML Template    →  Styled full document (Arabic/RTL aware)
+              ├── Puppeteer        →  HTML → PDF (A4, print background)
+              └── Response JSON    →  { html, pdf (base64), filename }
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Frontend (`/`)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Component | Description |
+|-----------|-------------|
+| Upload Zone | Drag & drop `.md` file with visual feedback |
+| Theme Selector | 4 med-themed cards with live color previews |
+| Convert Button | Sends file + theme to API, shows loading spinner |
+| Result Viewer | Two-tab layout: HTML iframe + PDF embed |
+| Download Buttons | Download `.html` and `.pdf` files |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend (`/api/md-converter`)
 
-## Learn More
+```
+POST /api/md-converter
+  Content-Type: multipart/form-data
+  Body: file (.md), theme (JSON string)
 
-To learn more about Next.js, take a look at the following resources:
+Response:
+  {
+    html: "<html>...</html>",      // full styled HTML document
+    pdf: "base64string...",        // base64-encoded PDF
+    filename: "notes"              // original filename without .md
+  }
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+### Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Node.js** 20+
+- **Google Chrome** or **Chromium** installed (for Puppeteer PDF generation)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/med-converter.git
+cd med-converter
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Environment Variables (Optional)
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PUPPETEER_EXECUTABLE_PATH` | Auto-detected | Path to Chrome/Chromium executable |
+
+On Windows, it auto-detects `C:\Program Files\Google\Chrome\Application\chrome.exe`.
+On Linux, it falls back to `/usr/bin/chromium`.
+
+---
+
+## 🌍 Language Support
+
+Med Converter automatically detects the language mix in your Markdown:
+
+| Scenario | Direction | Primary Font | Fallback Font |
+|----------|-----------|-------------|---------------|
+| Mostly Arabic (>30%) | RTL | Tajawal | Plus Jakarta Sans |
+| Mostly French/Latin | LTR | Plus Jakarta Sans | Tajawal |
+| Mixed content | Auto per element | Both loaded | `unicode-bidi: plaintext` |
+
+Code blocks are always rendered LTR regardless of document direction.
+
+---
+
+## 🎨 Themes
+
+| Theme | Best For |
+|-------|----------|
+| **Clinical Blue** | Clinical notes, drug tables, general use |
+| **Obsidian Scholar** | Dark theme for late-night study sessions |
+| **Forest Anatomy** | Physiology, anatomy & pathology notes |
+| **Warm Radiology** | Case presentations & radiology reports |
+
+---
+
+## 📦 Tech Stack
+
+| Technology | Purpose |
+|-----------|---------|
+| [Next.js 16](https://nextjs.org/) | App Router, API routes, SSR |
+| [TypeScript](https://www.typescriptlang.org/) | Type safety |
+| [Tailwind CSS 4](https://tailwindcss.com/) | Styling |
+| [Radix UI](https://www.radix-ui.com/) | Tabs component |
+| [marked](https://marked.js.org/) | Markdown → HTML parsing |
+| [Puppeteer Core](https://pptr.dev/) | HTML → PDF generation |
+| [KaTeX](https://katex.org/) | LaTeX math rendering |
+| [Tajawal](https://fonts.google.com/specimen/Tajawal) | Arabic typography |
+| [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) | Latin/French typography |
+
+---
+
+## 🚢 Deployment
+
+### Railway / Nixpacks
+
+The project includes a `nixpacks.toml` for one-click deployment on Railway:
+
+```toml
+[phases.setup]
+nixPkgs = ["nodejs_20", "chromium"]
+
+[variables]
+PUPPETEER_SKIP_DOWNLOAD = "true"
+PUPPETEER_EXECUTABLE_PATH = "/root/.nix-profile/bin/chromium"
+```
+
+### Docker
+
+Make sure your Docker image includes Chromium and sets `PUPPETEER_EXECUTABLE_PATH`.
+
+---
+
+## 📁 Project Structure
+
+```
+med-converter/
+├── app/
+│   ├── api/
+│   │   └── md-converter/
+│   │       ├── route.ts          # API: MD → HTML → PDF
+│   │       └── themes.json       # Theme definitions
+│   ├── globals.css               # Global styles
+│   ├── layout.tsx                # Root layout + fonts + metadata
+│   └── page.tsx                  # Main converter UI
+├── components/
+│   └── ui/
+│       ├── badge.tsx             # Badge component
+│       └── tabs.tsx              # Tabs component (Radix)
+├── lib/
+│   └── utils.ts                  # cn() utility
+├── nixpacks.toml                 # Railway deployment config
+├── package.json
+└── tsconfig.json
+```
+
+---
+
+## 📄 License
+
+MIT © Med Converter

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "clinical-blue",
+    "name": "Clinical Blue",
+    "description": "Clean professional look for clinical notes & drug tables",
+    "preview": {
+      "bg": "#f8fafc",
+      "header": "#1e3a5f",
+      "accent": "#2563eb",
+      "text": "#0f172a"
+    },
+    "theme": {
+      "primary": "#2563eb",
+      "secondary": "#0ea5e9",
+      "accent": "#6366f1",
+      "background": "#f8fafc",
+      "cardBg": "#ffffff",
+      "text": "#0f172a",
+      "textMuted": "#64748b",
+      "border": "#e2e8f0",
+      "headingColor": "#1e3a5f",
+      "h2Color": "#1d4ed8",
+      "h3Color": "#0369a1",
+      "h4Color": "#4f46e5",
+      "codeText": "#1e40af",
+      "codeBg": "#eff6ff",
+      "blockquoteBorder": "#2563eb",
+      "blockquoteBg": "#eff6ff",
+      "tableHeaderBg": "#1e3a5f",
+      "tableHeaderText": "#ffffff",
+      "tableRowAlt": "#f1f5f9",
+      "footerText": "#94a3b8",
+      "brandName": "MED CONVERTER",
+      "brandTagline": "Medical Markdown → PDF"
+    }
+  },
+  {
+    "id": "obsidian-scholar",
+    "name": "Obsidian Scholar",
+    "description": "Dark academic theme — ideal for late-night study sessions",
+    "preview": {
+      "bg": "#0f1117",
+      "header": "#1a1d27",
+      "accent": "#a78bfa",
+      "text": "#e2e8f0"
+    },
+    "theme": {
+      "primary": "#a78bfa",
+      "secondary": "#818cf8",
+      "accent": "#c084fc",
+      "background": "#0f1117",
+      "cardBg": "#1a1d27",
+      "text": "#e2e8f0",
+      "textMuted": "#94a3b8",
+      "border": "#2d3148",
+      "headingColor": "#a78bfa",
+      "h2Color": "#818cf8",
+      "h3Color": "#c084fc",
+      "h4Color": "#e879f9",
+      "codeText": "#c4b5fd",
+      "codeBg": "#1e1b4b",
+      "blockquoteBorder": "#a78bfa",
+      "blockquoteBg": "#1e1b4b",
+      "tableHeaderBg": "#1e1b4b",
+      "tableHeaderText": "#c4b5fd",
+      "tableRowAlt": "#1e2130",
+      "footerText": "#64748b",
+      "brandName": "MED CONVERTER",
+      "brandTagline": "Medical Markdown → PDF"
+    }
+  },
+  {
+    "id": "forest-anatomy",
+    "name": "Forest Anatomy",
+    "description": "Organic greens for physiology, anatomy & pathology notes",
+    "preview": {
+      "bg": "#f0fdf4",
+      "header": "#14532d",
+      "accent": "#16a34a",
+      "text": "#052e16"
+    },
+    "theme": {
+      "primary": "#16a34a",
+      "secondary": "#22c55e",
+      "accent": "#059669",
+      "background": "#f0fdf4",
+      "cardBg": "#ffffff",
+      "text": "#052e16",
+      "textMuted": "#4d7c60",
+      "border": "#bbf7d0",
+      "headingColor": "#14532d",
+      "h2Color": "#15803d",
+      "h3Color": "#047857",
+      "h4Color": "#059669",
+      "codeText": "#065f46",
+      "codeBg": "#dcfce7",
+      "blockquoteBorder": "#16a34a",
+      "blockquoteBg": "#dcfce7",
+      "tableHeaderBg": "#14532d",
+      "tableHeaderText": "#dcfce7",
+      "tableRowAlt": "#f0fdf4",
+      "footerText": "#86efac",
+      "brandName": "MED CONVERTER",
+      "brandTagline": "Medical Markdown → PDF"
+    }
+  },
+  {
+    "id": "warm-radiology",
+    "name": "Warm Radiology",
+    "description": "Warm amber tones — perfect for case presentations & reports",
+    "preview": {
+      "bg": "#fffbeb",
+      "header": "#78350f",
+      "accent": "#d97706",
+      "text": "#1c1917"
+    },
+    "theme": {
+      "primary": "#d97706",
+      "secondary": "#f59e0b",
+      "accent": "#b45309",
+      "background": "#fffbeb",
+      "cardBg": "#ffffff",
+      "text": "#1c1917",
+      "textMuted": "#78716c",
+      "border": "#fde68a",
+      "headingColor": "#78350f",
+      "h2Color": "#92400e",
+      "h3Color": "#b45309",
+      "h4Color": "#d97706",
+      "codeText": "#92400e",
+      "codeBg": "#fef3c7",
+      "blockquoteBorder": "#d97706",
+      "blockquoteBg": "#fef3c7",
+      "tableHeaderBg": "#78350f",
+      "tableHeaderText": "#fef3c7",
+      "tableRowAlt": "#fefce8",
+      "footerText": "#a16207",
+      "brandName": "MED CONVERTER",
+      "brandTagline": "Medical Markdown → PDF"
+    }
+  }
+]
